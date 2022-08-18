@@ -6,8 +6,10 @@ A random Well Plate data generator written in C++.
 
 # Libraries used
 
-- [gflags](https://github.com/gflags/gflags) 
-- [gtest]()
+| Library                                        | version  |    
+|------------------------------------------------|----------|
+| [gflags](https://github.com/gflags/gflags)     | 2.2.2    | 
+| [gtest](https://github.com/google/googletest)  | 1.12.1   |
 
 --- 
 

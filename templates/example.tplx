@@ -1,16 +1,17 @@
 v1
 # 96-well plate with a dilution scheme flowing L->R
-12 8
-s1 s  s  s  s  s  s  s  s  s hc  lc
-s1 s  s  s  s  s  s  s  s  s hc  lc
-s1 s  s  s  s  s  s  s  s  s hc  lc
-s1 s  s  s  s  s  s  s  s  s hc  lc
-s1 s  s  s  s  s  s  s  s  s hc  lc
-s1 s  s  s  s  s  s  s  s  s hc  lc
-s1 s  s  s  s  s  s  s  s  s hc  lc
-s1 s  s  s  s  s  s  s  s  s hc  lc
->>s1 10
->>df 10
+12 8 LR
+s1,s,s,s,s,s,s,s,s,s,hc,bl
+s1,s,s,s,s,s,s,s,s,s,hc,bl
+s1,s,s,s,s,s,s,s,s,s,hc,bl
+s2,s,s,s,s,s,s,s,s,s,hc,bl
+s2,s,s,s,s,s,s,s,s,s,bl,lc
+s2,s,s,s,s,s,s,s,s,s,bl,lc
+s2,s,s,s,s,s,s,s,s,s,bl,lc
+s2,s,s,s,s,s,s,s,s,s,bl,lc
+>>s1 10 10
+>>s2 10  3
 >>hc 10
 >>lc 10
->>b  NA
+>>bl NA
+>>pc NA

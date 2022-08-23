@@ -7,8 +7,14 @@ set(CMAKE_CXX_STANDARD 20)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
+enable_testing()
+
 set(Sources
-        )
+        src/template/template.cpp src/template/template.h)
+
+add_library(${PROJECT_NAME}_lib STATIC ${Sources})
 
 add_executable(${PROJECT_NAME} src/main.cpp ${Sources})
 target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
+
+add_subdirectory(test)

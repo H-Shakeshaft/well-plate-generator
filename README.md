@@ -93,6 +93,70 @@ A random Well Plate data generator written in C++.
   - default to 1 
   - provide CLI flag for specifying the number of execution threads 
 
+- [ ] figure out how to introduce skips 
+
+---
+
+## Quality of life tooling 
+
+- [ ] create website for template file generation 
+  - [ ] build with [deno fresh](https://fresh.deno.dev/)
+  - [ ] job to deploy app to [deno deploy](https://deno.com/deploy) 
+  - [ ] single page app (react)
+  
+  - [ ] UIs 
+    - [ ] provide reset button (clear form)
+    - [ ] version specifier
+      - radio buttons, mandatory, default to v1 (for now) 
+    
+    - [ ] comment text box
+      - auto-expanding/wrapping text input, should not be "text box" widget, optional
+    
+    - [ ] row & col inputs (integer input) 
+      - [ ] provide select box for 96, 384 & 1536 well plate defaults 
+      - mandatory, default to 96-well plate dimensions
+      - values must be greater than 0 
+    
+    - [ ] directionality specifier 
+      - radio buttons, mandatory, default to `LR`
+    
+    - [ ] max dilutions input 
+      - [ ] mandatory, default `None` (means that each row/col - depending on input - selected with "sample" type input 
+      will be treated as a new sample; e.g. s1, s2 & s3 will appear on rows 1, 2 and 3 respectively)
+      - NOTE: single point is done by entering `1` in the max dilutions input  
+    
+    - [ ] interactable grid 
+      - [ ] provide undo/redo buttons 
+      - [ ] resized automatically based on `rows`x`cols`
+      - [ ] provide well type radio selector 
+      - [ ] based on select type, when user clicks 2 wells, fill in the wells in that (x,y) range
+      with the selected type (also generate number of samples) 
+        - e.g. select sample type (with `max dilutions=3`) 
+        - select wells a1, c9 (assumed 96-well plate format)
+        - automatically each well in that range (a1-a9, b1-b9, c1-c9) should be filled out as `sample` type
+        - number of samples that should be generated is 9
+        - NOTE: sample number should only appear at start of new series (i.e. `s1,s,s,s2,s,s,...`)
+        - NOTE: all non-sample types should be of same initial conc. 
+        (expand this option later such that I can apply "max dilutions" to all types, maybe not blanks)
+    
+    - [ ] data block 
+      - [ ] for each generated sample create a sample input form 
+        - e.g. there are 3 distinct samples
+        - create input for s1 `s1 [] []` which maps to "`<sample number>`, `<init conc>`, `<dilution factor>`" 
+        - repeat generation for all samples 
+        - if `max dilutions` set to `1`, create single sample entry field (`s1`)
+      - if non-sample type well present in grid, set default value to 0
+      - if non-sample type well not present, set field to non-editable `NA` value
+
+- [ ] show form on LHS of page 
+  - [ ] add option to automatically regenerate file on change to any fields 
+    - regeneration should be after 500ms of inactivity 
+  - [ ] if auto-refresh enabled, then enable "regenerate file" button
+- [ ] show generated file in non-editable text box on RHS (preview) 
+  - [ ] provide option to copy file to clipboard 
+  - [ ] provide option to download file 
+- [ ] create "onboarding" option ("take a tour" button to top of page)
+
 --- 
 
 ## Custom template file format
@@ -115,7 +179,7 @@ s2,s,s,s,s,s,s,s,s,s,bl,lc
 s2,s,s,s,s,s,s,s,s,s,bl,lc
 s2,s,s,s,s,s,s,s,s,s,bl,lc
 >>s1 10 10
->>s2 10  3
+>>s2 10 3
 >>hc 10
 >>lc 10
 >>bl NA
@@ -150,3 +214,17 @@ s2,s,s,s,s,s,s,s,s,s,bl,lc
         - `bl <conc.>`
     - positive control
       - `pc <conc.>`
+
+### usage notes 
+
+- if you want to create a single point plate, then 
+  - set all _sample_ wells to `s1`
+  - set the `DF` column for `>>s1` to either _any float_ (e.g. `10`) or `NA`
+  - for example:
+```
+...
+10 1 LR
+s1,s1,s1,s1,s1,s1,s1,s1,hc,lc
+>>s1 10 NA
+...
+```

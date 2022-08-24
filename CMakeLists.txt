@@ -10,7 +10,7 @@ conan_basic_setup()
 enable_testing()
 
 set(Sources
-        src/template/template.cpp src/template/template.h)
+        src/template/template.cpp src/template/template.hpp)
 
 add_library(${PROJECT_NAME}_lib STATIC ${Sources})
 

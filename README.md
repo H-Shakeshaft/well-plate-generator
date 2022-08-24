@@ -30,14 +30,14 @@ A random Well Plate data generator written in C++.
     - must exist prior to call 
 
 - [ ] template parser 
-  - [ ] read template file 
+  - [x] read template file 
   - [ ] parse template into internal representation of plate
-    - [ ] read + store file version 
+    - [x] read + store file version 
     - [ ] preallocate array of `cols`x`rows` dims
-    - [ ] set directionality 
-  - [ ] store values for parameters 
+    - [x] set directionality 
+  - [x] store values for parameters 
     - store in map 
-    - convert `NA` to `NULL/nullptr`
+    - convert `NA` to `NULL/nullptr` (decided to ignore or exit with error based off of whether value declared in format block or not)
 
 - [ ] data fuzzer  
   - [ ] take internal template representation 

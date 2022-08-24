@@ -13,5 +13,5 @@ s2,s,s,s,s,s,s,s,s,s,bl,lc
 >>s2 10 3
 >>hc 10
 >>lc 10
->>bl NA
+>>bl 0
 >>pc NA

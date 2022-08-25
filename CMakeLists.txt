@@ -11,7 +11,7 @@ enable_testing()
 
 set(Sources
         src/template/template.cpp src/template/template.hpp
-        src/template/parser.cpp src/template/parser.hpp)
+        src/template/parser.cpp src/template/parser.hpp src/template/factory.cpp src/template/factory.h)
 
 add_library(${PROJECT_NAME}_lib STATIC ${Sources})
 

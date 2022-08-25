@@ -63,6 +63,4 @@ namespace wellgen::plate {
 
         std::string to_string() const;
     };
-
-    PlateTemplate plate_template_factory(std::string& t_file_path);
 }

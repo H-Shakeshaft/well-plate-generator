@@ -17,41 +17,48 @@ namespace wellgen::plate {
         LR, TB
     };
 
+    // type aliases
+    using uint = unsigned int;
+    using PlateFormat = std::vector<std::vector<std::string>>;
+    using SampleMap = std::map<std::string, std::array<float, 2>>;
+    using ControlMap = std::map<std::string, float>;
+
+    /// @brief deserialized template file
     class PlateTemplate {
     private:
         /// version of template file
-        unsigned int m_version;
+        uint m_version;
 
         /// description of file
         std::string m_description;
 
         /// number of cols and rows
-        unsigned int m_num_cols, m_num_rows;
+        uint m_num_cols, m_num_rows;
 
         /// indicator for directionality of dilution schemes in plate
         Directionality m_directionality;
 
         /// CSV formatted block for the plate layout
-        std::vector<std::vector<std::string>> m_plate_format;
+        PlateFormat m_plate_format;
 
         /// map for all sample type information
-        std::map<std::string, std::array<float, 2>> m_sample_map;
+        SampleMap m_sample_map;
 
         /// map for all non-sample types; includes [hc, lc, bl, pc]
-        std::map<std::string, float> m_control_map;
+        ControlMap m_control_map;
 
     public:
         PlateTemplate() = default;
 
         PlateTemplate(
-                unsigned int t_version,
+                uint t_version,
                 std::string t_description,
-                unsigned int t_cols,
-                unsigned int t_rows,
+                uint t_cols,
+                uint t_rows,
                 Directionality t_directionality,
-                std::vector<std::vector<std::string>> t_plate_format,
-                std::map<std::string, std::array<float, 2>> t_sample_map,
-                std::map<std::string, float> t_control_map
+                PlateFormat t_plate_format,
+                SampleMap t_sample_map,
+                ControlMap t_control_map
         );
 
         std::string to_string() const;

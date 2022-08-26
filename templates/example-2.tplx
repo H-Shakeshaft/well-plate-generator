@@ -1,0 +1,15 @@
+v1
+# 96-well plate with a dilution scheme flowing L->R
+12 8 TB
+s1,s1,s1,s1,s1,s2,s2,s2,s2,s2,hc,lc
+s,s,s,s,s,s,s,s,s,s,hc,lc
+s,s,s,s,s,s,s,s,s,s,hc,lc
+s,s,s,s,s,s,s,s,s,s,hc,lc
+s,s,s,s,s,s,s,s,s,s,hc,lc
+s,s,s,s,s,s,s,s,s,s,hc,lc
+s,s,s,s,s,s,s,s,s,s,hc,lc
+s,s,s,s,s,s,s,s,s,s,hc,lc
+>>s1 10 10
+>>s2 15 3
+>>hc 10
+>>lc 10

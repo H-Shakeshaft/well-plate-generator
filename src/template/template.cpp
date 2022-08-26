@@ -1,4 +1,7 @@
 #include "template.hpp"
+#include <regex>
+#include <map>
+#include <iostream>
 
 namespace wellgen::plate {
     PlateTemplate::PlateTemplate(
@@ -81,5 +84,71 @@ namespace wellgen::plate {
         str_rep += ")";
 
         return str_rep;
+    }
+
+    void PlateTemplate::create_initial_plate() {
+        WellPlate plate{};
+        std::vector<float> row;
+        plate.reserve(this->m_num_rows);
+        row.reserve(this->m_num_cols);
+
+        std::smatch motif_match;
+        std::regex motif_regex{"s([0-9]+)"};
+
+        if (this->m_directionality == Directionality::LR) {
+            for (int j = 0; j < this->m_num_rows; ++j) {
+                row = {};
+                std::string init_sample_conc_loc;
+
+                for (int i = 0; i < this->m_num_cols; ++i) {
+                    const auto& well = this->m_plate_format[j][i];
+
+                    // initial concentration for samples
+                    if (std::regex_match(well, motif_match, motif_regex)) {
+                        row.push_back(this->m_sample_map[well][0]);
+                        init_sample_conc_loc = well;
+                    }
+                    // dilution schemes
+                    else if (well == "s") {
+                        row.push_back(row[i - 1] / this->m_sample_map[init_sample_conc_loc][1]);
+                    }
+                    // controls
+                    else {
+                        row.push_back(this->m_control_map[well]);
+                    }
+                }
+                plate.push_back(row);
+            }
+        } else if (this->m_directionality == Directionality::TB) {
+            std::map<int, std::string> columnar_init_sample_conc_loc{};
+            for (int j = 0; j < this->m_num_rows; ++j) {
+                row = {};
+
+                for (int i = 0; i < this->m_num_cols; ++i) {
+                    const auto& well = this->m_plate_format[j][i];
+
+                    // initial concentration for samples
+                    if (std::regex_match(well, motif_match, motif_regex)) {
+                        row.push_back(this->m_sample_map[well][0]);
+                        columnar_init_sample_conc_loc.insert(std::pair<int, std::string>(i, well));
+                    }
+                    // dilution schemes
+                    else if (well == "s") {
+                        row.push_back(plate[j - 1][i] / this->m_sample_map[columnar_init_sample_conc_loc[i]][1]);
+                    }
+                    // controls
+                    else {
+                        row.push_back(this->m_control_map[well]);
+                    }
+                }
+                plate.push_back(row);
+            }
+        }
+
+        this->m_initial_plate = plate;
+    }
+
+    WellPlate PlateTemplate::initial_plate() {
+        return this->m_initial_plate;
     }
 }

@@ -22,6 +22,7 @@ namespace wellgen::plate {
     using PlateFormat = std::vector<std::vector<std::string>>;
     using SampleMap = std::map<std::string, std::array<float, 2>>;
     using ControlMap = std::map<std::string, float>;
+    using WellPlate = std::vector<std::vector<float>>;
 
     /// @brief deserialized template file
     class PlateTemplate {
@@ -47,6 +48,9 @@ namespace wellgen::plate {
         /// map for all non-sample types; includes [hc, lc, bl, pc]
         ControlMap m_control_map;
 
+        /// representation of the well plate populated with initial values
+        WellPlate m_initial_plate;
+
     public:
         PlateTemplate() = default;
 
@@ -61,6 +65,14 @@ namespace wellgen::plate {
                 ControlMap t_control_map
         );
 
+        /// return a string representation of the PlateTemplate
         std::string to_string() const;
+
+        /// create a vector of initial values from the internal plate representation and store it in the instance of PlateTemplate
+        /// @note plate generated has already had the concentration scheme applied to it
+        void create_initial_plate();
+
+        /// return a copy of the internal representation of a WellPlate with the parsed numeric values applied
+        [[nodiscard]] WellPlate initial_plate();
     };
 }

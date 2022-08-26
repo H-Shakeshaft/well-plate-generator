@@ -7,6 +7,7 @@ namespace wellgen::plate {
         // check file exists
         if (ifs.is_open()) {
             PlateTemplate plate_template = parse_template_file(ifs);
+            plate_template.create_initial_plate();
             ifs.close();
             return plate_template;
         } else {

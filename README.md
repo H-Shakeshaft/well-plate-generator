@@ -29,11 +29,11 @@ A random Well Plate data generator written in C++.
   - [ ] accept output directory 
     - must exist prior to call 
 
-- [ ] template parser 
+- [x] template parser 
   - [x] read template file 
-  - [ ] parse template into internal representation of plate
+  - [x] parse template into internal representation of plate
     - [x] read + store file version 
-    - [ ] preallocate array of `cols`x`rows` dims
+    - [x] preallocate array of `cols`x`rows` dims
     - [x] set directionality 
   - [x] store values for parameters 
     - store in map 

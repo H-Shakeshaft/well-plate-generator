@@ -72,18 +72,7 @@ namespace wellgen::plate {
         control_map.erase(control_map.end() - 2, control_map.end());
         control_map += "]";
 
-        str str_rep = "PlateTemplate(";
-        str_rep += version;
-        str_rep += description;
-        str_rep += num_cols;
-        str_rep += num_rows;
-        str_rep += directionality;
-        str_rep += plate_format;
-        str_rep += sample_map;
-        str_rep += control_map;
-        str_rep += ")";
-
-        return str_rep;
+        return "PlateTemplate(" + version + description + num_cols + num_rows + directionality + plate_format + sample_map + control_map + ")";
     }
 
     void PlateTemplate::create_initial_plate() {

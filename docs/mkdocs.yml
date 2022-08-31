@@ -21,7 +21,10 @@ theme:
     admonition:
       note: material/pencil
       danger: material/lightning-bolt
+  features:
+    - content.tabs.link
 markdown_extensions:
+  - tables
   - admonition
   - pymdownx.details
   - pymdownx.superfences:
@@ -29,3 +32,5 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true

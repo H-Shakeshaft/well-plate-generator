@@ -5,6 +5,6 @@ a screening experiment.
 
 ## Contents 
 
-- [CLI Usage](Documents/Coding Projects/work/std_su_data_gen/docs/docs/command-line-usage/index.md)
-- [Implementation Notes](Documents/Coding Projects/work/std_su_data_gen/docs/docs/implementation-notes/index.md)
+- [CLI Usage](command-line-usage/index.md)
+- [Implementation Notes](implementation-notes/index.md)
 - [Template Files](template-file/index.md)

@@ -8,7 +8,7 @@
 
 namespace wellgen::fuzz {
     float sigmoidal_curve(const float& t_x) {
-        return A / (B * exp(t_x * -1));
+        return A / (B + exp(t_x * -1));
     }
 
     plate::WellPlate simulate_dose_response(const plate::WellPlate& t_init_plate, const Equation t_equation) {

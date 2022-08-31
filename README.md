@@ -39,7 +39,7 @@ A random Well Plate data generator written in C++.
     - store in map 
     - convert `NA` to `NULL/nullptr` (decided to ignore or exit with error based off of whether value declared in format block or not)
 
-- [ ] data fuzzer  
+- [x] data fuzzer  
   - [x] take internal template representation 
   - [x] create initial array of 0 vals 
   - [x] set values for all defined parameters (sx, hc, lc, pc, bl)
@@ -50,21 +50,18 @@ A random Well Plate data generator written in C++.
     - [x] derive a value based on the supplied equation
     - [x] 'fuzz' derived data (add some noise to the data, using guassian distribution)
   - [x] data generated should be a 2d array of floating point values 
-  - [ ] push finalised plate to a queue  
 
-- [ ] exporter 
+- [x] exporter 
   - [x] check `save-dir` is an existing directory 
     - [x] if not, exit program 
-  - [ ] pop plate from queue (when available)
   - [x] write file to output directory 
     - [x] filename (generated as unix time stamp) 
 
 - [ ] documentation 
   - [ ] add CLI help menu 
-  - [ ] create doc site for usage 
-    - [ ] documentation on file format 
-    - [ ] documentation on CLI usage 
-    - [ ] documentation on _Interactive mode_ usage
+  - [x] create doc site for usage 
+    - [x] documentation on file format 
+    - [x] documentation on CLI usage 
 
 - [ ] CI/CD
   - [ ] run some tests on each build 
@@ -225,4 +222,57 @@ s2,s,s,s,s,s,s,s,s,s,bl,lc
 s1,s1,s1,s1,s1,s1,s1,s1,hc,lc
 >>s1 10 NA
 ...
+```
+
+
+```mermaid
+flowchart LR
+    
+    subgraph "Parse File"
+        A[Start] --> B{Does file exist?};
+        B --> |No| C[Exit with error]; 
+    end 
+        
+    subgraph "Parse first 3 lines"
+        B --> |Yes| D{Is version valid?};
+        D --> |No| C;
+        D --> |Yes| E{Is there a comment line?};
+        E --> |No| C;
+        E --> |Yes| F{Is the comment line more than 1 line?};
+        F --> |Yes| C;
+        F --> |No| G{Is there a Format Declaration Line?};
+        G --> |No| C;   
+    end
+    
+    subgraph "Parse Format Declaration Line"
+        G --> |Yes| H{Is there a col number, row number and directionality?};
+        H --> |No| C;
+        H --> |Yes| I{Are the col and row numbers positive?};
+        I --> |No| C;
+        I --> |Yes| J{Are they integers?};
+        J --> |No| C;
+        J --> |Yes| K{Is the directionality valid?};
+        K --> |No| C;
+    end
+    
+    subgraph "Parse Plate Declaration Block"
+        K --> |Yes| L{Are there any non-sample well types?};
+        L --> |Yes| M{Are there any wells which aren't hc, lc, pc or bl};
+        M --> |Yes| C;
+    end
+    
+    subgraph "Parse Data Block"
+        M --> |No| N;
+        L --> |No| N{Are there any undeclared samples?};
+        N --> |Yes| C;
+        N --> |No| O{Do the samples contain NA for values?};
+        O --> |Yes| C;
+        O --> |No| P{Are there other declared well types};
+        P --> |Yes| Q{Are any NA initialised?};
+        Q --> |Yes| R{Are they declared in the Plate Declaration Block};
+        R --> |Yes| C;
+        R --> |No| S{Is the value a float?};
+        Q --> |No| S;
+        S --> |No| C;
+    end
 ```

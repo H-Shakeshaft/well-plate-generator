@@ -1,4 +1,6 @@
 site_name: Well-Plate Data Generator
+repo_url: https://github.com/H-Shakeshaft/well-plate-generator
+repo_name: H-Shakeshaft/well-plate-generator
 theme:
   name: material
   palette:
@@ -22,6 +24,8 @@ theme:
 markdown_extensions:
   - admonition
   - pymdownx.details
-  - pymdownx.superfences
-repo_url: https://github.com/H-Shakeshaft/well-plate-generator
-repo_name: H-Shakeshaft/well-plate-generator
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format

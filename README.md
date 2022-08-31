@@ -53,13 +53,11 @@ A random Well Plate data generator written in C++.
   - [ ] push finalised plate to a queue  
 
 - [ ] exporter 
-  - [ ] check `save-dir` is an existing directory 
-    - [ ] if not, exit program 
+  - [x] check `save-dir` is an existing directory 
+    - [x] if not, exit program 
   - [ ] pop plate from queue (when available)
-  - [ ] write file to output directory 
-    - [ ] filename 
-      - should be some UUID 
-      - alternatively generate hash of file and use that for name
+  - [x] write file to output directory 
+    - [x] filename (generated as unix time stamp) 
 
 - [ ] documentation 
   - [ ] add CLI help menu 

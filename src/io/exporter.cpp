@@ -1,0 +1,48 @@
+#include "exporter.hpp"
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+
+namespace wellgen::io {
+
+    void write_file(const std::string& t_export_dir, const ExportFormat t_format, const plate::WellPlate& t_plate) {
+        if (!std::filesystem::exists(std::filesystem::path({t_export_dir}))) {
+            std::cerr << "ERROR: directory '" << t_export_dir << "' does not exist\n";
+            exit(EXIT_FAILURE);
+        }
+
+        std::string f_name = std::to_string(std::time(nullptr));
+        std::ofstream file{t_export_dir + "/" + f_name + (t_format == ExportFormat::CSV ? ".csv" : ".tsv")};
+
+        std::stringstream tmp_s;
+
+        if (file.is_open()) {
+            tmp_s = {};
+            if (t_format == ExportFormat::CSV) {
+                for (const auto& row : t_plate) {
+                    for (const auto& col : row) {
+                        // file << col << ",";
+                        tmp_s << col << ",";
+                    }
+                    std::string s = tmp_s.str();
+                    s.erase(s.end() - 1, s.end());
+                    file << s << "\n";
+                }
+            } else if (t_format == ExportFormat::TSV) {
+                for (const auto& row : t_plate) {
+                    for (const auto& col : row) {
+                        // file << col << ",";
+                        tmp_s << col << "\t";
+                    }
+                    std::string s = tmp_s.str();
+                    s.erase(s.end() - 1, s.end());
+                    file << s << "\n";
+                }
+            }
+        } else {
+            std::cerr << "ERROR: file '" << f_name << "' not could not be written to\n";
+            exit(EXIT_FAILURE);
+        }
+    }
+}

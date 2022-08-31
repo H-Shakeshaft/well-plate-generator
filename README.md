@@ -40,16 +40,16 @@ A random Well Plate data generator written in C++.
     - convert `NA` to `NULL/nullptr` (decided to ignore or exit with error based off of whether value declared in format block or not)
 
 - [ ] data fuzzer  
-  - [ ] take internal template representation 
+  - [x] take internal template representation 
   - [x] create initial array of 0 vals 
   - [x] set values for all defined parameters (sx, hc, lc, pc, bl)
   - [x] for each `sx` (if present)
     - [x] iterate over the array in the defined manner (e.g. `LR`=`Left->Right`)
     - [x] based on ith col/row, perform dilution (e.g. 3rd col with df=10, perform dilution of 10^3)
-  - [ ] iterate over all values and 
-    - [ ] derive a value based on the supplied equation
-    - [ ] 'fuzz' derived data (add some noise to the data, using guassian distribution)
-  - [ ] data generated should be a 2d array of floating point values 
+  - [x] iterate over all values and 
+    - [x] derive a value based on the supplied equation
+    - [x] 'fuzz' derived data (add some noise to the data, using guassian distribution)
+  - [x] data generated should be a 2d array of floating point values 
   - [ ] push finalised plate to a queue  
 
 - [ ] exporter 

@@ -27,7 +27,6 @@ namespace wellgen::io {
                     std::string s = tmp_s.str();
                     s.erase(s.end() - 1, s.end());
                     file << s << "\n";
-                    std::cout << "(len=" << s.size() << ")" << s  << "\n";
                 }
             } else if (t_format == ExportFormat::TSV) {
                 for (const auto& row : t_plate) {

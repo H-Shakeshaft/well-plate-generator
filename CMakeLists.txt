@@ -14,7 +14,8 @@ set(Sources
         src/template/parser.cpp src/template/parser.hpp
         src/template/factory.cpp src/template/factory.h
         src/fuzzer/fuzzer.cpp src/fuzzer/fuzzer.hpp
-        src/io/exporter.cpp src/io/exporter.hpp)
+        src/io/exporter.cpp src/io/exporter.hpp
+        src/util/uuid.cpp src/util/uuid.hpp)
 
 add_library(${PROJECT_NAME}_lib STATIC ${Sources})
 

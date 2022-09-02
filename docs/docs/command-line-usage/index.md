@@ -12,7 +12,9 @@
 | `-o`       | `--output`     | Path to directory where generated data should be saved                                    | ```-o /Users/henryshakeshaft/Documents/screening-plate-templates/generated-data```  | 
 
 
-!!! example "Generating 20 CSV plates with EC50 shape" 
+## Examples 
+
+??? example "Generating 20 CSV plates with EC50 shape" 
 
     === "Unix"
         ```bash
@@ -22,4 +24,16 @@
     === "Windows"
         ```bash
         wellgen -t %USERPROFILE%/well-gen/templates/96-lr.tplx -n 20 -e EC50 -f csv -o %USERPROFILE%/well-gen/generated
+        ```
+
+??? example "Generating 100,000 1536 well plates with XC50 shapes exported as TSV files"
+
+    === "Unix"
+        ```bash
+        wellgen -t $HOME/well-gen/templates/1526-A.tplx -n 100000 -e XC50 -f csv -o $HOME/well-gen/generated
+        ```
+
+    === "Windows"
+        ```bash
+        wellgen -t %USERPROFILE%/well-gen/templates/1526-A.tplx -n 100000 -e XC50 -f csv -o %USERPROFILE%/well-gen/generated
         ```

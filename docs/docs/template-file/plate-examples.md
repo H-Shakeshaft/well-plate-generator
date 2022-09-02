@@ -10,7 +10,7 @@ This page contains some examples of both valid and invalid file formats, with re
 ??? example "96-well plate containing 1 sample type and a Left to right dilution scheme"
 
         v1
-        # 96-well plate with Left>Right dilution scheme 
+        # 96-well plate with Left->Right dilution scheme 
         12 8 LR
         s1,s,s,s,s,s,s,s,s,s,hc,bl
         s1,s,s,s,s,s,s,s,s,s,hc,bl
@@ -27,7 +27,7 @@ This page contains some examples of both valid and invalid file formats, with re
 
 ---
 
-??? example "96-well plate with Top>Bottom dilution scheme"
+??? example "96-well plate with Top to Bottom dilution scheme"
 
         v1
         # 96-well plate with a dilution scheme flowing L->R
@@ -46,10 +46,10 @@ This page contains some examples of both valid and invalid file formats, with re
 
 ---
 
-??? example "96-well plate containing 1 sample type and a Left to right dilution scheme where multiple dilution schemes are present per line"
+??? example "96-well plate containing 1 sample type and a Left to Right dilution scheme where multiple dilution schemes are present per line"
 
         v1
-        # 96-well plate with Left>Right dilution scheme 
+        # 96-well plate with Left->Right dilution scheme 
         12 8 LR
         s1,s,s,s,s,s1,s,s,s,s,hc,bl
         s1,s,s,s,s,s1,s,s,s,s,hc,bl
@@ -120,4 +120,3 @@ This page contains some examples of both valid and invalid file formats, with re
         <li>`s1`, the initial concentration is not declared as a valid number</li>
         <li>`s2`, the dilution factor is not declared as a valid number</li>
     </ul>
-

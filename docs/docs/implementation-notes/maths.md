@@ -2,7 +2,7 @@
 
     Explanation of how the numbers are actually generated whilst simulating well plates.
 
-The application simulates reads according to a sigmoidal curve function such that a well with $x$ with some concentration
+The application simulates reads according to a sigmoidal curve function such that a well ($x$) with some concentration
 $$
 f(x) = \frac{1}{1 + e^{-x}}
 $$ 

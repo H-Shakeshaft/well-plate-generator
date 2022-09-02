@@ -12,7 +12,7 @@ wants to simulate in any format desired.
 
 !!! example
 
-    96-well-lr.tlpx
+    96-well-lr.tplx
 
 ---
 
@@ -63,8 +63,10 @@ across the plate) of the dilution scheme.
 
 ??? info "valid values for directionality"
     the following values are valid for `directionality`:
-      <br/>`LR`: meaning from Left to Right (top to bottom), wherein each new row marks a new sample run
-      <br/>`TB`: meaning from Top to  Bottom (left to right), wherein each new col marks a new sample run 
+    <ul>
+      <li>`LR`: meaning from Left to Right (top to bottom), wherein each new row marks a new sample run</li>
+      <li>`TB`: meaning from Top to  Bottom (left to right), wherein each new col marks a new sample run</li>
+    <ul>
 
 --- 
 

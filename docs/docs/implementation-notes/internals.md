@@ -43,25 +43,31 @@ flowchart LR
     subgraph parse_data_block
     end
     
-    d1 <==> parse_first_3_lines;
-    e1 <==> parse_plate_declaration_block;
-    f1 <==> parse_data_block;
+    d1 ==> parse_first_3_lines;
+    parse_first_3_lines ==> d1;
+
+    e1 ==> parse_plate_declaration_block;
+    parse_plate_declaration_block ==> e1;
+    
+    f1 ==> parse_data_block;
+    parse_data_block ==> f1;
 ```
 
 
 !!! note
 
-    whilst parsing each line of the file a check is performed to see if there is a blank line 
+    whilst parsing each line of the file a check is performed to see if there is a blank line; if there is, then an error
+    is thrown.
 
 !!! note
 
-    Below are the expanded flow diagrams for each linked step 
+    Below are the expanded flow diagrams for each linked step.
 
 
 ??? info "parse_first_3_lines"
 
     ```mermaid
-    flowchart LR
+    flowchart TB
         a2[Start] --> b2{Is version valid?};
         b2 --> |No| c2{Is there a comment line?};
         b2 --> |Yes| d2[Exit with error];
